@@ -2,3 +2,25 @@
   width: 100%;
   height: 100vh;
 }
+.headerMap{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.countryContainer{
+  width: 45px;
+  height: 30px;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.countryContainer:hover{
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 430px) {
+  .countryContainer{
+    width: 50%;
+    max-width: 40px;
+  }
+}
