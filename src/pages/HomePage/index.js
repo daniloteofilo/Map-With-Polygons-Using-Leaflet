@@ -168,7 +168,7 @@ function DashboardContent() {
                     pt: 0,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: '70vh',
+                    height: '75vh',
                   }}
                 >
                   <MapLeafLet />
@@ -180,7 +180,7 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: '70vh',
+                    height: '75vh',
                   }}
                 >
                   <PersonalInformations />

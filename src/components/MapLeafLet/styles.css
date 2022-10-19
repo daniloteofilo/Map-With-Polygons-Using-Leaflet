@@ -17,10 +17,27 @@
 .countryContainer:hover{
   opacity: 0.9;
 }
+.buttonsProperty{
+  padding: 3px;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.134);
+  background-color: rgb(170, 211, 223);
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.245);
+
+}
+.buttonsProperty:hover{
+  text-shadow: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.245);
+  background-color: rgba(170, 211, 223, 0.766);
+}
 
 @media only screen and (max-width: 430px) {
   .countryContainer{
     width: 50%;
     max-width: 40px;
+    
   }
 }
