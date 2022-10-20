@@ -2,11 +2,10 @@
     "id": 1,
     "name": "Propriedade 1",
     "polygons": [
-      [
         {
           "id": 1,
-          "especie": "Maconha",
-          "cultivar": "Sativa",
+          "especie": "Uva",
+          "cultivar": "Bordô",
           "coordinates": [
             [-3.7270, -38.5596],
             [-3.72635, -38.5597],
@@ -17,6 +16,41 @@
           "dataDePlantio": "2022-10-18",
           "dataDeFim": null
         }
-      ]
+    ]
+  },{
+    "id": 2,
+    "name": "Propriedade 2",
+    "polygons": [
+        {
+          "id": 1,
+          "especie": "Manga",
+          "cultivar": "Rosa",
+          "coordinates": [
+            [-4.26109, -38.93278],
+            [-4.26101, -38.9331],
+            [-4.26147, -38.93322],
+            [-4.26155, -38.93291]
+          ],
+          "dataDePlantio": "2022-10-28",
+          "dataDeFim": null
+        }
+    ]
+  },{
+    "id": 3,
+    "name": "Propriedade 3",
+    "polygons": [
+        {
+          "id": 1,
+          "especie": "Banana",
+          "cultivar": "Prata",
+          "coordinates": [
+            [-5.0728, -37.9895],
+            [-5.07157, -37.98893],
+            [-5.07145, -37.9900],
+            [-5.07231, -37.99045]
+          ],
+          "dataDePlantio": "2022-01-18",
+          "dataDeFim": null
+        }
     ]
   }]

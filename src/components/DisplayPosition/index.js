@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import data from '../../dataBackEnd/PropertiesList.json'
 
-
-
-console.log(data[0].polygons[0][0].especie);
 function DisplayPosition({ map }) {
     const coordinatesProperty1 = [-3.7269, -38.5585]
     const coordinatesProperty2 = [-4.2618, -38.9331]

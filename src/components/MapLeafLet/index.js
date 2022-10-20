@@ -13,50 +13,14 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import './styles.css';
 import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
 import { Collapse } from '@mui/material';
-
-const propriedadeDetails = [{
-    nome: 'Propriedade1',
-    poligono: 'Poligono1',
-    especie: 'Uva',
-    cultivar: 'Bordô',
-    dataPlantio: '17/05/2022',
-    dataDeFim: 'Não informada'
-  }, {
-    nome: 'Propriedade2',
-    poligono: 'Poligono2',
-    especie: 'Banana',
-    cultivar: 'Maçã',
-    dataPlantio: '19/05/2022',
-    dataDeFim: 'Não informada'
-  }, {
-    nome: 'Propriedade3',
-    poligono: 'Poligono3',
-    especie: 'Manga',
-    cultivar: 'Rosa',
-    dataPlantio: '17/05/2022',
-    dataDeFim: 'Não informada'
-  }]
+import data from '../../dataBackEnd/PropertiesList.json'
 
 
-const propriedade1 = [
-  [-3.7270, -38.5596],
-  [-3.72635, -38.5597],
-  [-3.72595, -38.5576],
-  [-3.7268, -38.5575],
-  [-3.7274, -38.5585]
-]
-const propriedade2 = [
-  [-4.26109, -38.93278],
-  [-4.26101, -38.9331],
-  [-4.26147, -38.93322],
-  [-4.26155, -38.93291]
-]
-const propriedade3 = [
-  [-5.0728, -37.9895],
-  [-5.07157, -37.98893],
-  [-5.07145, -37.9900],
-  [-5.07231, -37.99045]
-]
+console.log(console.log(data[0].polygons[0].coordinates));
+
+const propriedade1 = data[0].polygons[0].coordinates
+const propriedade2 = data[1].polygons[0].coordinates
+const propriedade3 = data[2].polygons[0].coordinates
 
 const limeOptions = { color: 'lime' }
 const purpleOptions = { color: 'purple' }
@@ -97,15 +61,16 @@ function MapLeafLet() {
 
 
 
-
-  const [openDetailsPolygon1, setOpenDetailsPolygon1] = React.useState(false);
-  const handleClickPolygon1 = () => {
-    setOpenDetailsPolygon1(!openDetailsPolygon1);
-  };
-  const [openDetailsPolygon2, setOpenDetailsPolygon2] = React.useState(false);
-  const handleClickPolygon2 = () => {
-    setOpenDetailsPolygon2(!openDetailsPolygon2);
-  };
+  // DROPDOWN DO ASIDE MENU COM INFORMAÇÕES
+  // const [openDetailsPolygon1, setOpenDetailsPolygon1] = React.useState(false);
+  // const handleClickPolygon1 = () => {
+  //   setOpenDetailsPolygon1(!openDetailsPolygon1);
+  // };
+  // const [openDetailsPolygon2, setOpenDetailsPolygon2] = React.useState(false);
+  // const handleClickPolygon2 = () => {
+  //   setOpenDetailsPolygon2(!openDetailsPolygon2);
+  // };
+  // FIM
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -114,12 +79,12 @@ function MapLeafLet() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItemText sx={{p:4, mb:'40px'}} primary={propriedadeDetails[0].nome} />
+        <ListItemText sx={{p:4, mb:'40px'}} primary={'teste'} />
         <ListItemButton onClick={handleClickPolygon1}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={propriedadeDetails[0].poligono} />
+          <ListItemText primary={'teste'} />
           {openDetailsPolygon1 ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openDetailsPolygon1} timeout="auto" unmountOnExit>
@@ -198,19 +163,15 @@ function MapLeafLet() {
           }
           }} pathOptions={limeOptions} positions={propriedade3} />
       </MapContainer>
+      <SwipeableDrawer
+        anchor={"right"}
+        open={state["right"]}
+        onClose={toggleDrawer("right", false)}
+        onOpen={toggleDrawer("right", true)}
+      >
+        {list("right")}
+      </SwipeableDrawer>
       <div>
-        {['left', 'right', 'top', 'bottom'].map((anchor) => (
-          <React.Fragment key={anchor}>
-            <SwipeableDrawer
-              anchor={anchor}
-              open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-              onOpen={toggleDrawer(anchor, true)}
-            >
-              {list(anchor)}
-            </SwipeableDrawer>
-          </React.Fragment>
-        ))}
       </div>
     </>
   );
