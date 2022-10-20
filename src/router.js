@@ -12,7 +12,6 @@ function Router() {
 			<Route path="/register" element={<RegisterPage/>} />
 			<Route path="/mapa" element={<MapLeafLet/>} />
 			<Route path="/home" element={<Dashboard/>} />
-
         </Routes>
 	);
 }

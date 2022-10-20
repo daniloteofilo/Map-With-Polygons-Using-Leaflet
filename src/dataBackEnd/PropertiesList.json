@@ -1,0 +1,22 @@
+[{
+    "id": 1,
+    "name": "Propriedade 1",
+    "polygons": [
+      [
+        {
+          "id": 1,
+          "especie": "Maconha",
+          "cultivar": "Sativa",
+          "coordinates": [
+            [-3.7270, -38.5596],
+            [-3.72635, -38.5597],
+            [-3.72595, -38.5576],
+            [-3.7268, -38.5575],
+            [-3.7274, -38.5585]
+          ],
+          "dataDePlantio": "2022-10-18",
+          "dataDeFim": null
+        }
+      ]
+    ]
+  }]

@@ -1,8 +1,41 @@
-// import React, {useState} from "react";
 import { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from 'react-leaflet';
+import { MapContainer, TileLayer, Polygon } from 'react-leaflet';
 import DisplayPosition from '../DisplayPosition';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import './styles.css';
+import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import { Collapse } from '@mui/material';
+
+const propriedadeDetails = [{
+    nome: 'Propriedade1',
+    poligono: 'Poligono1',
+    especie: 'Uva',
+    cultivar: 'Bordô',
+    dataPlantio: '17/05/2022',
+    dataDeFim: 'Não informada'
+  }, {
+    nome: 'Propriedade2',
+    poligono: 'Poligono2',
+    especie: 'Banana',
+    cultivar: 'Maçã',
+    dataPlantio: '19/05/2022',
+    dataDeFim: 'Não informada'
+  }, {
+    nome: 'Propriedade3',
+    poligono: 'Poligono3',
+    especie: 'Manga',
+    cultivar: 'Rosa',
+    dataPlantio: '17/05/2022',
+    dataDeFim: 'Não informada'
+  }]
 
 
 const propriedade1 = [
@@ -25,21 +58,118 @@ const propriedade3 = [
   [-5.07231, -37.99045]
 ]
 
-const fillBlueOptions = { fillColor: 'blue' }
-const blackOptions = { color: 'black' }
 const limeOptions = { color: 'lime' }
 const purpleOptions = { color: 'purple' }
 const redOptions = { color: 'red' }
 
 function MapLeafLet() {
   const coordinatesProperty1 = [-3.7269, -38.5585]
-  const coordinatesProperty2 = [-4.2614, -38.9330]
-  const coordinatesProperty3 = [-5.0721, -37.9897]
+  
   const [map, setMap] = useState(null)
   
-  function teste() {
-    alert('teste')
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  function openRightMenu(){
+    setState({
+      top: false,
+      left: false,
+      bottom: false,
+      right: true,
+    });
   }
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+
+
+
+  const [openDetailsPolygon1, setOpenDetailsPolygon1] = React.useState(false);
+  const handleClickPolygon1 = () => {
+    setOpenDetailsPolygon1(!openDetailsPolygon1);
+  };
+  const [openDetailsPolygon2, setOpenDetailsPolygon2] = React.useState(false);
+  const handleClickPolygon2 = () => {
+    setOpenDetailsPolygon2(!openDetailsPolygon2);
+  };
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, true)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItemText sx={{p:4, mb:'40px'}} primary={propriedadeDetails[0].nome} />
+        <ListItemButton onClick={handleClickPolygon1}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary={propriedadeDetails[0].poligono} />
+          {openDetailsPolygon1 ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openDetailsPolygon1} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+      <Divider />
+      <List>
+      <ListItemButton onClick={handleClickPolygon2}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="TESTE" />
+          {openDetailsPolygon2 ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openDetailsPolygon2} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4 }}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+    </Box>
+  );
+
+  
+
 
 
   return (
@@ -50,31 +180,10 @@ function MapLeafLet() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={coordinatesProperty1} >
-          <Popup>
-            <div>
-              <h3>{"Propriedade 1"}</h3>
-              <button onClick={teste}>DETALHES</button>
-            </div>
-          </Popup>
-        </Marker>
-        <Marker position={coordinatesProperty2} >
-          <Popup>
-            <div>
-              <h3>{"Propriedade 2"}</h3>
-            </div>
-          </Popup>
-        </Marker>
-        <Marker position={coordinatesProperty3} >
-          <Popup>
-            <div>
-              <h3>{"Propriedade 3"}</h3>
-            </div>
-          </Popup>
-        </Marker>
+        
         <Polygon eventHandlers={{
           click: () => {
-            alert("marker clicked");
+            openRightMenu()
           }
           }} 
           pathOptions={redOptions} positions={propriedade1} />
@@ -89,6 +198,20 @@ function MapLeafLet() {
           }
           }} pathOptions={limeOptions} positions={propriedade3} />
       </MapContainer>
+      <div>
+        {['left', 'right', 'top', 'bottom'].map((anchor) => (
+          <React.Fragment key={anchor}>
+            <SwipeableDrawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+              onOpen={toggleDrawer(anchor, true)}
+            >
+              {list(anchor)}
+            </SwipeableDrawer>
+          </React.Fragment>
+        ))}
+      </div>
     </>
   );
 }
