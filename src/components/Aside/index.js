@@ -9,23 +9,23 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { ExpandLess, ExpandMore, Nature, Spa } from "@mui/icons-material";
 import { Collapse } from "@mui/material";
-import data from "../../dataBackEnd/PropertiesList.json";
 
 const Aside = ({ property, selectedPolygon, onSelectPolygon, map }) => {
-    const polygons = data[0].polygons;
-    const zoom = 16
-
+  const zoom = 16
+  
   return (
     <Box sx={{ width: 300 }} role="presentation">
       <List>
         <ListItemText sx={{ p: 4 }} primary={property.name} />
         {property.polygons.map(
           ({ id, especie, cultivar, dataDePlantio, dataDeFim }, index) => (
-            <>
-              <ListItemButton onClick={event =>  {
+            <div key={id}>
+              <ListItemButton
+                onClick={event =>  {
                   onSelectPolygon(selectedPolygon === id ? null : id);
-                  map.setView(polygons[index].coordinates[0], zoom);
-                  }}>
+                  map.setView(property.polygons[index].coordinates[0], zoom);
+                }}
+              >
                 <ListItemIcon>
                   <DashboardIcon />
                 </ListItemIcon>
@@ -63,7 +63,7 @@ const Aside = ({ property, selectedPolygon, onSelectPolygon, map }) => {
                   </ListItemButton>
                 </List>
               </Collapse>
-            </>
+            </div>
           )
         )}
       </List>
