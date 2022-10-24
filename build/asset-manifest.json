@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Map-With-Polygons-Using-Leaflet/static/css/main.b4cef35a.css",
+    "main.js": "/Map-With-Polygons-Using-Leaflet/static/js/main.d92e61c4.js",
+    "static/js/787.341cc8f1.chunk.js": "/Map-With-Polygons-Using-Leaflet/static/js/787.341cc8f1.chunk.js",
+    "static/media/hiddenPass.png": "/Map-With-Polygons-Using-Leaflet/static/media/hiddenPass.632416f6e6ae0877a2e9.png",
+    "static/media/showPass.png": "/Map-With-Polygons-Using-Leaflet/static/media/showPass.f7976d31776a79389a8e.png",
+    "index.html": "/Map-With-Polygons-Using-Leaflet/index.html",
+    "main.b4cef35a.css.map": "/Map-With-Polygons-Using-Leaflet/static/css/main.b4cef35a.css.map",
+    "main.d92e61c4.js.map": "/Map-With-Polygons-Using-Leaflet/static/js/main.d92e61c4.js.map",
+    "787.341cc8f1.chunk.js.map": "/Map-With-Polygons-Using-Leaflet/static/js/787.341cc8f1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4cef35a.css",
+    "static/js/main.d92e61c4.js"
+  ]
+}
