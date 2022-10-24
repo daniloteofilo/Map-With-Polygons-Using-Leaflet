@@ -23,7 +23,7 @@ function MapLeafLet() {
     fetch(urlApi)
       .then((response) => response.json())
       .then((json) => setDataApi(json));
-  }, [open]);
+  }, [selectedPolygon, open]);
   
   if (!dataApi) {
     return null;

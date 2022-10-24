@@ -9,10 +9,20 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { ExpandLess, ExpandMore, Nature, Spa } from "@mui/icons-material";
 import { Collapse } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import * as React from 'react';
+import DeleteModal from "../DeleteModal";
+
+
 
 const Aside = ({ property, selectedPolygon, onSelectPolygon, map }) => {
   const zoom = 16
-  
+
+
+  const [selectedToDelete, setSelectedToDelete] = React.useState(null);
+  const handleCloseModal = () => setSelectedToDelete(null);
+
+ 
   return (
     <Box sx={{ width: 300 }} role="presentation">
       <List>
@@ -30,7 +40,12 @@ const Aside = ({ property, selectedPolygon, onSelectPolygon, map }) => {
                   <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary={`Polygon ${id}`} />
-                {selectedPolygon === id? <ExpandLess /> : <ExpandMore />}
+                {selectedPolygon === id? <ExpandLess style={{marginRight:'15px'}} /> : <ExpandMore style={{marginRight:'15px'}} />}
+                <DeleteIcon onClick={()=> {
+                  setSelectedToDelete(id)
+                }}
+                />
+                 
               </ListItemButton>
               <Collapse
                 in={selectedPolygon === id}
@@ -63,6 +78,10 @@ const Aside = ({ property, selectedPolygon, onSelectPolygon, map }) => {
                   </ListItemButton>
                 </List>
               </Collapse>
+              <DeleteModal 
+                handleCloseModal={handleCloseModal} 
+                selectedToDelete={selectedToDelete}
+              />
             </div>
           )
         )}
